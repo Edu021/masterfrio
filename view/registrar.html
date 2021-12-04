@@ -1,0 +1,64 @@
+<html>
+    <title>Agenda de serviços</title>
+    <body>
+        <div>
+            <h1>Master Frio</h1>
+            <h3>Registrar novo cliente</h3>
+        </div>
+        <br>
+
+        <div>
+
+            <tbody id="registrar-tbody">
+                <input type="text" id="nome" placeholder="Nome">
+                <label class="obrigatorio">*</label>
+                <br>
+                <br>
+                
+                <input type="text" id="endereco" placeholder="Endereço">
+                <label class="obrigatorio">*</label>
+                
+                <br>
+                <br>
+                
+                <input type="text" id="telefone" placeholder="Número de Telefone - 1">
+                <input type="text" id="telefone2" placeholder="Número de Telefone - 2">
+                
+                <br>
+                <br>
+
+                <select id="servicos">
+                    <option>Instalação - Split</option>
+                    <option>Instalação - Ar de janela</option>
+                    <option>Manutenção - Carga de gás</option>
+                    <option>Manutenção - Higienização</option>
+                    <option>Manutenção - Aparelho defeituoso</option>
+                    <option>Manutenção - Vazamento de água</option>
+                    <option>Manutenção - Outro</option>
+                </select>
+                <label class="obrigatorio">*</label>
+                <br>
+                <br>
+                
+                <input type="date" id="data" placeholder="">
+                <br>
+                <br>
+                
+                <input type="number" id="valor" placeholder="R$ - Valor">
+                <input type="number" id="desconto" placeholder="R$ - Desconto">
+                <label class="obrigatorio">*</label>
+                <br>
+                <br>
+                
+                <input type="text" id="observacao" placeholder="Observações">
+                <br>
+                <br>
+                <input type="button" value="Agendar" onclick="agendar()">
+            </tbody>
+
+        </div>
+    </body>
+
+    <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+    <script src="../../main.js"></script>
+</html>
