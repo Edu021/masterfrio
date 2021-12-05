@@ -18,14 +18,25 @@ function db (){
                             resolve(JSON.parse(JSON.stringify(rows)));
                         }
                 });
-                
             });
             con.end;
             return promise;
         },
-        insert: function() {
-            
+        insertCliente: function(campo) {
+            con.connect();
+            con.query(`insert into tb_cliente (nm_cliente,nm_rua,nr_casa,nm_bairro,tl_telefone,email) values (${campo});`,(err) => {
+                if(err) console.error('Erro: ' + err);
+            });
+            con.end();
         },
+        insertServico: function(campo) {
+            con.connect();
+            con.query(`insert into tb_servicos (id_cliente,nm_rua,nr_casa,nm_bairro,tipo_servico,dt_servico,vl_pago,vl_desconto,observacao) values (${campo})`, (err) => {
+                if(err) console.error('Erro: ' + err);
+            });
+            con.end();
+        },
+        
         update: function() {
 
         },

@@ -22,9 +22,14 @@ app.get('/clientes', (req,res) => {
     res.sendFile(__dirname + '/view/clientes.html');
 });
 
-app.get('/add', (req,res) => {
-    res.sendFile(__dirname + '/view/registrar.html');
+app.get('/agendar-servico', (req,res) => {
+    res.sendFile(__dirname + '/view/agendar-servico.html');
 });
+
+app.get('/cadastrar-cliente', (req,res) => {
+    res.sendFile(__dirname + '/view/cadastrar-cliente.html');
+})
+
 
 //
 // api 
@@ -38,6 +43,11 @@ app.get('/clientes-lista', (req,res) => {
     .catch(reject => {
         res.send(reject);
     });
-})
+});
+
+app.get('/insert-teste', (req,res) => {
+    // database().insertCliente("'Eduardo','Rua Apus','123','São Marcos','987485554','eduardo@gmail.com'");
+    database().insertServico("'7','Rua Caju','201','Santo Antonio','Instalação - Split','2021-12-09 14:30:00','450','0','askmldhkj'")
+});
 
 app.listen(80);
