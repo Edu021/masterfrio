@@ -19,8 +19,32 @@ function db (){
                         }
                 });
             });
-            con.end;
             return promise;
+        },
+        selectServico: function() {
+            const promise = new Promise((resolve, reject) => {
+                con.connect();
+                con.query(`
+                SELECT s.id_servico,
+                c.nm_cliente,
+                s.nm_rua,
+                s.nr_casa,
+                s.nm_bairro,
+                s.tipo_servico,
+                s.dt_servico,
+                s.vl_pago,
+                s.vl_desconto,
+                s.observacao
+                FROM masterfrio.tb_servicos as s, masterfrio.tb_cliente as c WHERE c.id_cliente = s.id_cliente;`, (err,rows,result) => {
+                if(err) {
+                    reject(new Error(err));
+                } else {
+                    resolve(JSON.parse(JSON.stringify(rows)));
+                }
+            });
+        })
+        
+        return promise;
         },
         insertCliente: function(campo) {
             con.connect();

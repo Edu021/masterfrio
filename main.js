@@ -45,6 +45,34 @@ app.get('/clientes-lista', (req,res) => {
     });
 });
 
+app.get('/clientes-lista/:id', (req,res) => {
+    database().select('*','tb_cliente') 
+    .then(resolve => {
+        for(i in resolve) {
+            if(req.params.id == resolve[i].id_cliente) {
+                return resolve[i]
+            }
+        }
+    })
+    .then(resolve => {res.send(resolve)});
+});
+
+app.get('/servicos-lista', (req,res) => {
+    database().selectServico().then(resolve =>{res.send(resolve)});
+});
+
+app.get('/servicos-lista/:id', (req,res) => {
+    database().selectServico()
+    .then(resolve => {
+        for(i in resolve) {
+            if(req.params.id == resolve[i].id_servico) {
+                return resolve[i];
+            }
+        }
+    })
+    .then(resolve => {res.send(resolve)});
+});
+
 app.get('/insert-teste', (req,res) => {
     // database().insertCliente("'Eduardo','Rua Apus','123','São Marcos','987485554','eduardo@gmail.com'");
     database().insertServico("'7','Rua Caju','201','Santo Antonio','Instalação - Split','2021-12-09 14:30:00','450','0','askmldhkj'")
