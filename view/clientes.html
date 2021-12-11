@@ -11,6 +11,38 @@
     <title>Master Frio - Clientes</title>
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="javascript:history.back()">
+                <img src="/src/nav-icon" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                Master Frio
+            </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Menu</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Agenda</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Clintes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active">Agendar Serviço</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active">Cadastrar Cliente</a>
+              </li>
+            </ul>
+          </div>
+          
+        </div>
+        
+    </nav>
     <header class='cabecalho'>
         <h1>Master Frio</h1>
     </header>
@@ -25,7 +57,7 @@
         <input type="search" name="Procurar" id="procurar_cliente">
     
     <div>
-        <table class='table'>
+        <table class='table' id='tabela-clientes'>
             <tr>
                 <th>Id</th>
                 <th>Nome</th>
@@ -55,15 +87,6 @@
             </tr>
         </table>
     </div>
-        
-
-
-
-
-
-
-
-
 
     </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->

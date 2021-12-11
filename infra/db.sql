@@ -26,14 +26,14 @@ CREATE TABLE `tb_servicos` (
   KEY `fk_id_cliente` (`id_cliente`),
   CONSTRAINT `fk_id_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `tb_cliente` (`id_cliente`)
 );
-
+SET lc_time_names = 'pt_BR';
 SELECT s.id_servico,
     c.nm_cliente,
     s.nm_rua,
     s.nr_casa,
     s.nm_bairro,
     s.tipo_servico,
-    s.dt_servico,
+	DATE_FORMAT(s.dt_servico, "%d/%m/%y às %H:%i") as dt_servico,
     s.vl_pago,
     s.vl_desconto,
     s.observacao
@@ -42,6 +42,7 @@ WHERE c.id_cliente = s.id_cliente;
 
 select * from tb_cliente;
 select * from tb_servicos;
+
 INSERT INTO `masterfrio`.`tb_servicos`
 (
 `id_cliente`,
@@ -55,3 +56,6 @@ INSERT INTO `masterfrio`.`tb_servicos`
 `observacao`)
 VALUES
 (2,'Rua Canguru','400','Jardim Sofia','Instalação - Split','21-12-9 14:30:00',350,0,'abalsdalkd');
+
+
+

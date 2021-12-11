@@ -1,9 +1,18 @@
 const express = require('express');
 const app = express();
-const database = require('./infra/crud')
+const database = require('./infra/crud');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const { json } = require('body-parser');
+
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+  }));
 
 //
-// páginas
+// PAGES
 //
 
 app.get('/', (req,res) => {
@@ -30,9 +39,36 @@ app.get('/cadastrar-cliente', (req,res) => {
     res.sendFile(__dirname + '/view/cadastrar-cliente.html');
 })
 
+//
+// SOURCES
+//
+
+app.get('/controller/clientes.controller.js', (req,res) => {
+    res.sendFile(__dirname + '/controller/clientes.controller.js');
+});
+
+app.get('/controller/agenda.controller.js', (req,res) => {
+    res.sendFile(__dirname + '/controller/agenda.controller.js');
+});
+
+app.get('/src/css', (req,res) => {
+    res.sendFile(__dirname + '/view/css.css');
+});
+
+app.get('/src/masterfrio', (req,res) => {
+    res.sendFile(__dirname + '/view/masterfrio.jpg');
+});
+
+app.get('/src/nav-icon', (req,res) => {
+    res.sendFile(__dirname + '/view/nav-icon.png');
+});
+
+app.get('/src/fav-icon', (req,res) => {
+    res.sendFile(__dirname + '/view/fav-icon.jpg');
+});
 
 //
-// api 
+// API
 //
 
 app.get('/clientes-lista', (req,res) => {
@@ -73,9 +109,14 @@ app.get('/servicos-lista/:id', (req,res) => {
     .then(resolve => {res.send(resolve)});
 });
 
-app.get('/insert-teste', (req,res) => {
-    // database().insertCliente("'Eduardo','Rua Apus','123','São Marcos','987485554','eduardo@gmail.com'");
-    database().insertServico("'7','Rua Caju','201','Santo Antonio','Instalação - Split','2021-12-09 14:30:00','450','0','askmldhkj'")
+app.post('/servicos-lista', (req,res) => {
+    database().insertServico(`${req.body.id_cliente}, "${req.body.endereco}", ${req.body.numero}, "${req.body.bairro}", "${req.body.servicos}", "${req.body.data}", ${req.body.valor}, ${req.body.desconto}, "${req.body. observacao}"`)
+    console.log(req.body)
+    res.redirect('/')
+});
+
+app.post('/clientes-lista', (req,res) => {
+
 });
 
 app.listen(80);

@@ -1,0 +1,22 @@
+.form-agendar {
+    display: flex;
+    justify-content: space-evenly;
+    color: royalblue;
+}
+
+.form-agendar-input {
+    display: flex;
+}
+
+.index {
+    display: grid;
+    justify-content: center;
+}
+
+.cabecalho {
+    display: grid;
+}
+
+.espaco {
+    padding: 3px;
+}

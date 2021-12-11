@@ -1,16 +1,16 @@
 const mysql = require('mysql2');
 const con = mysql.createConnection({
-    host: '192.168.1.8',
+    host: '192.168.1.11',
     user: 'edu',
     password: 'Paimae00_',
     database: 'masterfrio'
 });
-
+con.connect();
 function db (){
     return{
         select: function(campos, tabela) {
                 const promise = new Promise((resolve,reject) => {
-                    con.connect();
+                    
                     con.query(`select ${campos} from ${tabela}`, (err, rows, result) => {
                         if(err){
                             reject(new Error(err));
@@ -23,7 +23,7 @@ function db (){
         },
         selectServico: function() {
             const promise = new Promise((resolve, reject) => {
-                con.connect();
+                
                 con.query(`
                 SELECT s.id_servico,
                 c.nm_cliente,
@@ -31,7 +31,7 @@ function db (){
                 s.nr_casa,
                 s.nm_bairro,
                 s.tipo_servico,
-                s.dt_servico,
+                DATE_FORMAT(s.dt_servico, "%d/%m/%y às %H:%i") as dt_servico,
                 s.vl_pago,
                 s.vl_desconto,
                 s.observacao
@@ -47,18 +47,18 @@ function db (){
         return promise;
         },
         insertCliente: function(campo) {
-            con.connect();
+            
             con.query(`insert into tb_cliente (nm_cliente,nm_rua,nr_casa,nm_bairro,tl_telefone,email) values (${campo});`,(err) => {
                 if(err) console.error('Erro: ' + err);
             });
-            con.end();
+            
         },
         insertServico: function(campo) {
-            con.connect();
+            
             con.query(`insert into tb_servicos (id_cliente,nm_rua,nr_casa,nm_bairro,tipo_servico,dt_servico,vl_pago,vl_desconto,observacao) values (${campo})`, (err) => {
                 if(err) console.error('Erro: ' + err);
             });
-            con.end();
+            
         },
         
         update: function() {
