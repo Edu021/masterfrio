@@ -49,20 +49,22 @@ function db (){
         insertCliente: function(campo) {
             
             con.query(`insert into tb_cliente (nm_cliente,nm_rua,nr_casa,nm_bairro,tl_telefone,email) values (${campo});`,(err) => {
-                if(err) console.error('Erro: ' + err);
+                if(err) console.error('Insert Cliente: ' + err);
             });
             
         },
         insertServico: function(campo) {
             
             con.query(`insert into tb_servicos (id_cliente,nm_rua,nr_casa,nm_bairro,tipo_servico,dt_servico,vl_pago,vl_desconto,observacao) values (${campo})`, (err) => {
-                if(err) console.error('Erro: ' + err);
+                if(err) console.error('Insert Servico: ' + err);
             });
             
         },
-        
-        update: function() {
-
+        updateServico: function(id_servico,rua,numero,bairro,preco) {
+            
+            con.query(`UPDATE tb_servicos SET nm_rua = "${rua}", nr_casa = ${numero}, nm_bairro = "${bairro}", vl_pago = ${preco} WHERE id_servico = ${id_servico};`, err => {
+                if(err) console.log(`Update ` + err)
+            })
         },
         delete: function() {
 

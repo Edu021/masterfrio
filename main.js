@@ -119,4 +119,10 @@ app.post('/clientes-lista', (req,res) => {
 
 });
 
+app.post('/servicos-lista/:id', (req,res) => {
+    database().updateServico(req.params.id,req.body.rua,req.body.numero,req.body.bairro,req.body.valor)
+    console.log(req.body, req.params.id)
+    res.redirect('/agenda')
+});
+
 app.listen(80);

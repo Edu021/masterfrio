@@ -20,3 +20,7 @@
 .espaco {
     padding: 3px;
 }
+
+#tabela-agenda {
+    display: table;
+}

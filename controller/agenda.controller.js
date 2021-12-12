@@ -1,3 +1,4 @@
+allItems = []
 window.onload = () => {    
     const url = 'http://192.168.1.11/servicos-lista';
     const table = document.getElementById('tabela-agenda')
@@ -9,6 +10,7 @@ window.onload = () => {
     <th class="table-dark">Categoria</th>
     <th class="table-dark">Data e hora</th>
     <th class="table-dark">Valor</th>
+    <th class="table-dark"></th>
 </tr>`
 
     fetch(url)
@@ -18,6 +20,7 @@ window.onload = () => {
     .then(src=>{
         console.log(src)
         for(i in src) {
+            allItems[i] = src[i];
             tabelaUtils('tabela-agenda').adicionarLinha(src[i])
         }
         return src;
@@ -42,7 +45,7 @@ function tabelaUtils(idTabela) {
     function getTrFormatada(src) {
 
         return `
-        <tr class="fields">
+        <tr class="fields accordion-item">
         <td>${src.nm_cliente}</td>
         <td>${src.nm_rua}</td> 
         <td>${src.nr_casa}</td>
@@ -50,18 +53,31 @@ function tabelaUtils(idTabela) {
         <td>${src.tipo_servico}</td>
         <td>${src.dt_servico}</td>
         <td>${"R$ " + src.vl_pago}</td>
+        <td><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" onclick="editRow(${allItems.indexOf(src)})">Editar</button></td>
         
-        
-        </tr>
-        
-        `;
-        
+        </tr>`;
+        // <td><button class="btn btn-secondary btn-sm" onclick="showDetails(${allItems.indexOf(src)})" data-bs-toggle="modal" data-bs-target="#detailsModal">Detalhes</button></td>
     }
+    // function getTrFormatadaDetails(src) {
+    //     return `
+    //     <tr class="fields accordion-item">
+    //     <td>${src.nm_cliente}</td>
+    //     <td>${src.nm_rua}</td> 
+    //     <td>${src.nr_casa}</td>
+    //     <td>${src.nm_bairro}</td>
+    //     <td>${src.tipo_servico}</td>
+    //     <td>${src.dt_servico}</td>
+    //     <td>${"R$ " + src.vl_pago}</td>
+    //     </tr>`;
+    // }
     
     return {
         adicionarLinha: function (src) {
             tabela.innerHTML += getTrFormatada(src);
-        }
+        },
+        // adicionarLinhaDetalhes: function (src) {
+        //     tabela.innerHTML += getTrFormatadaDetails(src);
+        // }
     }
 }
 
@@ -79,3 +95,25 @@ function searchFields() {
         }
     }
 }
+
+function editRow(index) {
+    src = allItems[index]
+    document.getElementById('rua').value = src.nm_rua;
+    document.getElementById('numero').value = src.nr_casa;
+    document.getElementById('bairro').value = src.nm_bairro;
+    document.getElementById('valor').value = src.vl_pago;
+    document.forms.editForm.action = `/servicos-lista/${src.id_servico}`;
+    document.forms.editForm.method = 'POST';
+    console.log(document.forms.editForm);
+}
+
+
+// function showDetails(src) {
+//     const all = allItems[src-1];
+//     document.getElementById('detailsModalLabel').innerText = `Detalhes ${all.nm_cliente}`;
+//     tabelaUtils('detailsTable').adicionarLinhaDetalhes(all);
+
+
+//     // document.getElementById()
+
+// }
