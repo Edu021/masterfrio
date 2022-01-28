@@ -2,13 +2,14 @@ window.onload = () => {
     const url = 'http://127.0.0.1/clientes-lista';
     const table = document.getElementById('tabela-clientes')
     table.innerHTML = `<tr>
-        <th>Id</th>
-        <th>Nome</th>
-        <th>Rua</th>
-        <th>Numero</th>
-        <th>Bairro</th>
-        <th>Telefone</th>
-        <th>Email</th></tr>`
+        <th class="table-dark">Id</th>
+        <th class="table-dark">Nome</th>
+        <th class="table-dark">Rua</th>
+        <th class="table-dark">Numero</th>
+        <th class="table-dark">Bairro</th>
+        <th class="table-dark">Telefone</th>
+        <th class="table-dark">Email</th>
+        </tr>`
 
     fetch(url)
     .then(src=>{

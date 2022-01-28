@@ -1,6 +1,6 @@
 allItems = []
 window.onload = () => {    
-    const url = 'http://192.168.1.11/servicos-lista';
+    const url = 'http://127.0.0.1/servicos-lista';
     const table = document.getElementById('tabela-agenda')
     table.innerHTML = `<tr>
     <th class="table-dark">Cliente</th>
@@ -11,7 +11,7 @@ window.onload = () => {
     <th class="table-dark">Data e hora</th>
     <th class="table-dark">Valor</th>
     <th class="table-dark"></th>
-</tr>`
+    </tr>`
 
     fetch(url)
     .then(src=>{
