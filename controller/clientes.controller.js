@@ -1,5 +1,5 @@
 window.onload = () => {    
-    const url = 'http://127.0.0.1/clientes-lista';
+    const url = 'http://192.168.1.9/clientes-lista';
     const table = document.getElementById('tabela-clientes')
     table.innerHTML = `<tr>
         <th class="table-dark">Id</th>
@@ -22,14 +22,13 @@ window.onload = () => {
     })
 };
 
-
 function tabelaUtils(idTabela) {
     const tabela = document.getElementById(idTabela);
 
     function getTrFormatada(src) {
 
         return `
-        <tr>
+        <tr class="fields accordion-item">
         <td>${src.id_cliente}</td> 
         <td>${src.nm_cliente}</td> 
         <td>${src.nm_rua}</td> 
@@ -45,6 +44,21 @@ function tabelaUtils(idTabela) {
     return {
         adicionarLinha: function (src) {
             tabela.innerHTML += getTrFormatada(src);
+        }
+    }
+}
+
+function searchFields() {
+    let input = document.getElementById('searchbar').value
+    input=input.toLowerCase();
+    let x = document.getElementsByClassName('fields');
+    
+    for (i = 0; i < x.length; i++) { 
+        if (!x[i].innerHTML.toLowerCase().includes(input)) {
+            x[i].style.display="none";
+        }
+        else {
+            x[i].style.display="table-row";                 
         }
     }
 }

@@ -39,6 +39,10 @@ app.get('/cadastrar-cliente', (req,res) => {
     res.sendFile(__dirname + '/view/cadastrar-cliente.html');
 })
 
+app.get('/historico', (req,res) => {
+    res.sendFile(__dirname + '/view/historico.html');
+})
+
 //
 // SOURCES
 //
@@ -66,6 +70,10 @@ app.get('/src/nav-icon', (req,res) => {
 app.get('/src/fav-icon', (req,res) => {
     res.sendFile(__dirname + '/view/fav-icon.jpg');
 });
+
+app.get('/controller/historico.controller.js', (req,res) => {
+    res.sendFile(__dirname + '/controller/historico.controller.js')
+})
 
 //
 // API
@@ -110,13 +118,15 @@ app.get('/servicos-lista/:id', (req,res) => {
 });
 
 app.post('/servicos-lista', (req,res) => {
-    database().insertServico(`${req.body.id_cliente}, "${req.body.endereco}", ${req.body.numero}, "${req.body.bairro}", "${req.body.servicos}", "${req.body.data}", ${req.body.valor}, ${req.body.desconto}, "${req.body. observacao}"`)
+    database().insertServico(`"${req.body.id_cliente}", "${req.body.endereco}", "${req.body.numero}", "${req.body.bairro}", "${req.body.servicos}", "${req.body.data}", "${req.body.valor}", "${req.body.desconto}", "${req.body.observacao}"`);
     console.log(req.body)
     res.redirect('/')
 });
 
 app.post('/clientes-lista', (req,res) => {
-
+    database().insertCliente(`"${req.body.nome}", "${req.body.endereco}", "${req.body.numero}", "${req.body.bairro}", "${req.body.telefone}", "${req.body.email}"`);
+    console.log(req.body)
+    res.redirect('/')
 });
 
 app.post('/servicos-lista/:id', (req,res) => {

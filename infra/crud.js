@@ -1,6 +1,6 @@
 const mysql = require('mysql2');
 const con = mysql.createConnection({
-    host: '192.168.1.12',
+    host: '192.168.1.9',
     user: 'edu',
     password: 'Paimae00_',
     database: 'masterfrio'
@@ -31,11 +31,11 @@ function db (){
                 s.nr_casa,
                 s.nm_bairro,
                 s.tipo_servico,
-                DATE_FORMAT(s.dt_servico, "%d/%m/%y às %H:%i") as dt_servico,
+                DATE_FORMAT(s.dt_servico, "%d/%m/%Y às %H:%i") as dt_servico,
                 s.vl_pago,
                 s.vl_desconto,
                 s.observacao
-                FROM masterfrio.tb_servicos as s, masterfrio.tb_cliente as c WHERE c.id_cliente = s.id_cliente;`, (err,rows,result) => {
+                FROM masterfrio.tb_servicos as s, masterfrio.tb_cliente as c WHERE c.id_cliente = s.id_cliente order by dt_servico;`, (err,rows,result) => {
                 if(err) {
                     reject(new Error(err));
                 } else {

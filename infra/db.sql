@@ -52,13 +52,10 @@ INSERT INTO `masterfrio`.`tb_servicos`
 `tipo_servico`,
 `dt_servico`,
 `vl_pago`,
-`vl_desconto`,
-`observacao`,
-`concluido`)
+`observacao`)
 VALUES
-(2,'Rua Canguru','400','Jardim Sofia','Instalação - Split','21-12-9 14:30:00',350,0,'abalsdalkd',false);
-
-UPDATE tb_servicos as s, tb_cliente as c SET c.nm_cliente = "Jorge", s.id_cliente = 1, s.nm_rua = 1, s.nr_casa = 1, s.nm_bairro = 1, s.tipo_servico = 1, s.dt_servico = 1, s.vl_pago = 1, s.vl_desconto = 1, s.observacao = 1  WHERE s.id_servico = 1 ;
-
+(1,"Rua Canguru","400","Jardim Sofia","Instalação - Split","21-12-9 14:30:00",350,'abalsdalkd');
+truncate tb_servicos;
+UPDATE tb_servicos as s, tb_cliente as c SET c.nm_cliente = "Jorge", s.id_cliente = 1, s.nm_rua = 1, s.nr_casa = 1, s.nm_bairro = 1, s.tipo_servico = 'Instalação - Split', s.dt_servico = '21-12-9 14:30:00', s.vl_pago = 1, s.vl_desconto = 1, s.observacao = 1  WHERE s.id_servico = 1 ;
 
 

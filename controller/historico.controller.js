@@ -43,7 +43,7 @@ function tabelaUtils(idTabela) {
     const tabela = document.getElementById(idTabela);
 
     function getTrFormatada(src) {
-        
+
         return `
         <tr class="fields accordion-item">
         <td>${src.nm_cliente}</td>
@@ -57,7 +57,7 @@ function tabelaUtils(idTabela) {
         
         </tr>`;
         // <td><button class="btn btn-secondary btn-sm" onclick="showDetails(${allItems.indexOf(src)})" data-bs-toggle="modal" data-bs-target="#detailsModal">Detalhes</button></td>
-    
+    }
     // function getTrFormatadaDetails(src) {
     //     return `
     //     <tr class="fields accordion-item">
@@ -70,15 +70,10 @@ function tabelaUtils(idTabela) {
     //     <td>${"R$ " + src.vl_pago}</td>
     //     </tr>`;
     // }
-    }
-
     
     return {
         adicionarLinha: function (src) {
-            if(compararDia(src) == true) {
-                tabela.innerHTML += getTrFormatada(src);
-            }
-            
+            tabela.innerHTML += getTrFormatada(src);
         },
         // adicionarLinhaDetalhes: function (src) {
         //     tabela.innerHTML += getTrFormatadaDetails(src);
@@ -110,28 +105,6 @@ function editRow(index) {
     document.forms.editForm.action = `/servicos-lista/${src.id_servico}`;
     document.forms.editForm.method = 'POST';
     console.log(document.forms.editForm);
-}
-
-function compararDia (src) {
-    var strData = src.dt_servico.substr(0,10);
-    partesData = strData.split("/")
-    var partesData = strData.split("/");
-    var data = new Date(partesData[2], partesData[1] - 1, partesData[0]);
-    
-    if(data >= new Date()) {
-        // console.log("continua na agenda");
-        return true
-    } else {
-        // console.log("sai da agenda");
-        return false
-    }
-
-    // if(hoje > data) {
-    //     return true
-    // } else {
-    //     return false
-    // }
-
 }
 
 // function showDetails(src) {
