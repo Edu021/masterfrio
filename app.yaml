@@ -1,0 +1,3 @@
+runtime: nodejs16 # or another supported version
+
+service: default

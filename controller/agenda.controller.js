@@ -1,6 +1,6 @@
 allItems = []
 window.onload = () => {    
-    const url = 'http://192.168.1.9/servicos-lista';
+    const url = '/servicos-lista';
     const table = document.getElementById('tabela-agenda')
     table.innerHTML = `<tr>
     <th class="table-dark">Cliente</th>
@@ -116,8 +116,9 @@ function compararDia (src) {
     var strData = src.dt_servico.substr(0,10);
     partesData = strData.split("/")
     var partesData = strData.split("/");
-    var data = new Date(partesData[2], partesData[1] - 1, partesData[0]);
-    
+    var data = new Date(partesData[2], partesData[1] - 1, Number(partesData[0]) + 1);
+    console.log(data)
+    console.log(new Date())
     if(data >= new Date()) {
         // console.log("continua na agenda");
         return true

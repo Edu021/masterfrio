@@ -1,6 +1,6 @@
 allItems = []
 window.onload = () => {    
-    const url = 'http://192.168.1.9/servicos-lista';
+    const url = '/servicos-lista';
     const table = document.getElementById('tabela-agenda')
     table.innerHTML = `<tr>
     <th class="table-dark">Cliente</th>

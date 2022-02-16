@@ -1,5 +1,5 @@
 CREATE DATABASE `masterfrio` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-
+use masterfrio;
 CREATE TABLE `tb_cliente` (
   `id_cliente` int NOT NULL AUTO_INCREMENT,
   `nm_cliente` varchar(45) NOT NULL,
@@ -19,14 +19,16 @@ CREATE TABLE `tb_servicos` (
   `nm_bairro` varchar(80) NOT NULL,
   `tipo_servico` enum('Instalação - Split','Instalação - Ar de janela','Manutenção - Carga de gás','Manutenção - Higienização','Manutenção - Aparelho defeituoso','Manutenção - Vazamento de água','Manutenção - Outro') DEFAULT NULL,
   `dt_servico` datetime DEFAULT NULL,
-  `vl_pago` int DEFAULT NULL,
-  `vl_desconto` int DEFAULT NULL,
+  `vl_pago` varchar(20) DEFAULT NULL,
+  `vl_desconto` varchar(20) DEFAULT NULL,
   `observacao` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id_servico`),
   KEY `fk_id_cliente` (`id_cliente`),
   CONSTRAINT `fk_id_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `tb_cliente` (`id_cliente`)
 );
+
 SET lc_time_names = 'pt_BR';
+
 SELECT s.id_servico,
     c.nm_cliente,   
     s.nm_rua,
@@ -55,7 +57,3 @@ INSERT INTO `masterfrio`.`tb_servicos`
 `observacao`)
 VALUES
 (1,"Rua Canguru","400","Jardim Sofia","Instalação - Split","21-12-9 14:30:00",350,'abalsdalkd');
-truncate tb_servicos;
-UPDATE tb_servicos as s, tb_cliente as c SET c.nm_cliente = "Jorge", s.id_cliente = 1, s.nm_rua = 1, s.nr_casa = 1, s.nm_bairro = 1, s.tipo_servico = 'Instalação - Split', s.dt_servico = '21-12-9 14:30:00', s.vl_pago = 1, s.vl_desconto = 1, s.observacao = 1  WHERE s.id_servico = 1 ;
-
-

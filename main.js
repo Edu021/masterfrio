@@ -73,7 +73,7 @@ app.get('/src/fav-icon', (req,res) => {
 
 app.get('/controller/historico.controller.js', (req,res) => {
     res.sendFile(__dirname + '/controller/historico.controller.js')
-})
+});
 
 //
 // API
@@ -135,4 +135,8 @@ app.post('/servicos-lista/:id', (req,res) => {
     res.redirect('/agenda')
 });
 
-app.listen(80);
+const server = app.listen(process.env.PORT || 80, () => {
+	const host = server.address().address;
+	const port = server.address().port;
+    console.log(`Server running at http://${host}:${port}/`);
+})

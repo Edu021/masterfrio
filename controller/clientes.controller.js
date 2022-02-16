@@ -1,5 +1,5 @@
 window.onload = () => {    
-    const url = 'http://192.168.1.9/clientes-lista';
+    const url = '/clientes-lista';
     const table = document.getElementById('tabela-clientes')
     table.innerHTML = `<tr>
         <th class="table-dark">Id</th>
