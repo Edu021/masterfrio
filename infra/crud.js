@@ -1,9 +1,9 @@
 const mysql = require('mysql2');
 const con = mysql.createConnection({
-    host: '',
-    user: '',
-    password: '',
-    database: '',
+    host: '34.95.248.196',
+    user: 'root',
+    password: 'Paimae00_',
+    database: 'masterfrio',
     port: 3306
 });
 con.connect();
@@ -27,6 +27,7 @@ function db (){
                 
                 con.query(`
                 SELECT s.id_servico,
+                c.id_cliente,
                 c.nm_cliente,
                 s.nm_rua,
                 s.nr_casa,
@@ -61,14 +62,26 @@ function db (){
             });
             
         },
-        updateServico: function(id_servico,rua,numero,bairro,preco) {
+        updateServico: function(id_servico,rua,numero,bairro,categoria,dt_servico,preco,observacao) {
             
-            con.query(`UPDATE tb_servicos SET nm_rua = "${rua}", nr_casa = ${numero}, nm_bairro = "${bairro}", vl_pago = ${preco} WHERE id_servico = ${id_servico};`, err => {
+            con.query(`
+            UPDATE tb_servicos SET 
+            nm_rua = "${rua}",
+            nr_casa = "${numero}", 
+            nm_bairro = "${bairro}", 
+            tipo_servico = "${categoria}",
+            dt_servico = "${dt_servico}",
+            vl_pago = "${preco}",
+            observacao = "${observacao}"
+
+            WHERE id_servico = ${id_servico};`, err => {
                 if(err) console.log(`Update ` + err)
             })
         },
-        delete: function() {
-
+        delete: function(tabela, condicao) {
+            con.query(`DELETE FROM ${tabela} WHERE ${condicao};`, err => {
+                if(err) console.log(`Delete ` + err)
+            })
         }
     }
 }

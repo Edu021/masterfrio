@@ -53,7 +53,7 @@ function tabelaUtils(idTabela) {
         <td>${src.tipo_servico}</td>
         <td>${src.dt_servico}</td>
         <td>${"R$ " + src.vl_pago}</td>
-        <td><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" onclick="editRow(${allItems.indexOf(src)})">Editar</button></td>
+        <td><button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" onclick="editRow(${allItems.indexOf(src)})">Detalhes</button></td>
         
         </tr>`;
         // <td><button class="btn btn-secondary btn-sm" onclick="showDetails(${allItems.indexOf(src)})" data-bs-toggle="modal" data-bs-target="#detailsModal">Detalhes</button></td>
@@ -98,10 +98,21 @@ function searchFields() {
 
 function editRow(index) {
     src = allItems[index]
+    document.getElementById('id_cliente').value = src.id_cliente;
+    document.getElementById('id_servico').value = src.id_servico;
     document.getElementById('rua').value = src.nm_rua;
     document.getElementById('numero').value = src.nr_casa;
     document.getElementById('bairro').value = src.nm_bairro;
+    document.getElementById('categoria').value = src.tipo_servico;
+
+    // FORMATAR DATA PARA INPUT DATETIME-LOCAL
+    let dt = src.dt_servico.substr(0,10) + "/" + src.dt_servico.substr(14,15);
+    let partesDt = dt.split("/");
+    let dataFormatada = `${partesDt[2]}-${partesDt[1]}-${partesDt[0]}T${partesDt[3]}`
+    document.getElementById('data').value = dataFormatada;
+
     document.getElementById('valor').value = src.vl_pago;
+    document.getElementById('observacao').value = src.observacao;
     document.forms.editForm.action = `/servicos-lista/${src.id_servico}`;
     document.forms.editForm.method = 'POST';
     console.log(document.forms.editForm);

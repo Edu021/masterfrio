@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
   <link rel="icon" type="image/x-icon" href="/src/fav-icon">
+  
   <title>Master Frio</title>
 </head>
 
@@ -39,7 +40,6 @@
       </div>
     </div>
   </div>
-  <pingendo onclick="window.open('https://pingendo.com/', '_blank')" style="cursor:pointer;position: fixed;bottom: 20px;right:20px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:220px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white">Made with Pingendo Free&nbsp;&nbsp;<img src="https://pingendo.com/site-assets/Pingendo_logo_big.png" class="d-block" alt="Pingendo logo" height="16"></pingendo>
   <div class="py-2">
     <div class="container">
       <div class="row">
@@ -89,6 +89,18 @@
                 </div>
               </div> -->
               <div class="form-group row">
+                <label for="id_cliente" class="col-sm-2 col-form-label">Id cliente</label>
+                <div class="col-sm-10">
+                  <input type="number" id="id_cliente" name="id_cliente" class="form-control" disabled>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="id_servico" class="col-sm-2 col-form-label">Id serviço</label>
+                <div class="col-sm-10">
+                  <input type="number" id="id_servico" name="id_servico" class="form-control" disabled>
+                </div>
+              </div>
+              <div class="form-group row">
                 <label for="rua" class="col-sm-2 col-form-label">Rua</label>
                 <div class="col-sm-10">
                   <input type="text" id="rua" name="rua" class="form-control">
@@ -97,7 +109,7 @@
               <div class="form-group row">
                 <label for="numero" class="col-sm-2 col-form-label">Número</label>
                 <div class="col-sm-10">
-                  <input type="number" id="numero" name="numero" class="form-control">
+                  <input type="text" id="numero" name="numero" class="form-control">
                 </div>
               </div>
               <div class="form-group row">
@@ -106,29 +118,48 @@
                   <input type="text" id="bairro" name="bairro" class="form-control">
                 </div>
               </div>
-              <!-- <div class="form-group row">
+              <div class="form-group row">
                 <label for="categoria" class="col-sm-2 col-form-label">Categoria</label>
                 <div class="col-sm-10">
-                  <input type="text" id="categoria" name="categoria" class="form-control">
+                  <select id="categoria" name="categoria" class="form-control" aria-label="Default select example" required="required">
+                    <option>Instalação - Split</option>
+                    <option>Manutenção - Carga de gás</option>
+                    <option>Manutenção - Higienização</option>
+                    <option>Manutenção - Aparelho defeituoso</option>
+                    <option>Manutenção - Vazamento de água</option>
+                    <option>Manutenção - Outro</option>
+                  </select>
                 </div>
-              </div> -->
-              <!-- <div class="form-group row">
+              </div>
+              <div class="form-group row">
                 <label for="data" class="col-sm-2 col-form-label">Data</label>
                 <div class="col-sm-10">
-                  <input type="datetime" id="data" name="data" class="form-control">
+                  <!-- <input type="datetime" id="data" name="data" class="form-control"> -->
+                  <input id="data" name="data" type="datetime-local" class="form-control" required="required">
                 </div>
-              </div> -->
+              </div>
               <div class="form-group row">
                 <label for="valor" class="col-sm-2 col-form-label">Preço</label>
                 <div class="col-sm-10">
                   <input type="number" id="valor" name="valor" class="form-control">
                 </div>
               </div>
+              <div class="form-group row">
+                <label for="observacao" class="col-sm-2 col-form-label">Observação</label>
+                <div class="col-sm-10">
+                  <textarea type="number" id="observacao" name="observacao" class="form-control"></textarea>
+                </div>
+              </div>
             </form>            
           </div>
+          <form name="editFormDelete" id="editFormDelete">
+
+          </form>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-            <button type="button" class="btn btn-danger"  data-bs-toggle="modal">Excluir</button>
+            <!-- <button type="button" class="btn btn-danger"  data-bs-toggle="modal">Excluir</button> -->
+
+            <input type="submit" class="btn btn-danger" value="Excluir" form="editFormDelete">            
             <input type="submit" class="btn btn-primary" value="Salvar" form="editForm">
           </div>
         </div>

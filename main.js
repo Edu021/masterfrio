@@ -37,11 +37,11 @@ app.get('/agendar-servico', (req,res) => {
 
 app.get('/cadastrar-cliente', (req,res) => {
     res.sendFile(__dirname + '/view/cadastrar-cliente.html');
-})
+});
 
 app.get('/historico', (req,res) => {
     res.sendFile(__dirname + '/view/historico.html');
-})
+});
 
 //
 // SOURCES
@@ -53,6 +53,10 @@ app.get('/controller/clientes.controller.js', (req,res) => {
 
 app.get('/controller/agenda.controller.js', (req,res) => {
     res.sendFile(__dirname + '/controller/agenda.controller.js');
+});
+
+app.get('/controller/agendar-servico.controller.js', (req,res) => {
+    res.sendFile(__dirname + '/controller/agendar-servico.controller.js')
 });
 
 app.get('/src/css', (req,res) => {
@@ -130,10 +134,15 @@ app.post('/clientes-lista', (req,res) => {
 });
 
 app.post('/servicos-lista/:id', (req,res) => {
-    database().updateServico(req.params.id,req.body.rua,req.body.numero,req.body.bairro,req.body.valor)
+    database().updateServico(req.params.id,req.body.rua,req.body.numero,req.body.bairro,req.body.categoria,req.body.data,req.body.valor,req.body.observacao)
     console.log(req.body, req.params.id)
     res.redirect('/agenda')
 });
+
+app.post('/servico-delete/:id', (req,res) => {
+    database().delete('tb_servicos', `id_servico = ${req.params.id}`)
+    res.redirect('/')
+})
 
 const server = app.listen(process.env.PORT || 80, () => {
 	const host = server.address().address;
