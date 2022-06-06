@@ -1,4 +1,3 @@
-CREATE DATABASE `masterfrio` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 use masterfrio;
 CREATE TABLE `tb_cliente` (
   `id_cliente` int NOT NULL AUTO_INCREMENT,
@@ -42,18 +41,6 @@ SELECT s.id_servico,
 FROM masterfrio.tb_servicos as s, masterfrio.tb_cliente as c
 WHERE c.id_cliente = s.id_cliente;
 
-select * from tb_cliente;
+select * from tb_cliente where nm_cliente = "samuel" and id_cliente = '';
 select * from tb_servicos;
 
-INSERT INTO `masterfrio`.`tb_servicos`
-(
-`id_cliente`,
-`nm_rua`,
-`nr_casa`,
-`nm_bairro`,
-`tipo_servico`,
-`dt_servico`,
-`vl_pago`,
-`observacao`)
-VALUES
-(1,"Rua Canguru","400","Jardim Sofia","Instalação - Split","21-12-9 14:30:00",350,'abalsdalkd');

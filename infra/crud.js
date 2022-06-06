@@ -1,9 +1,9 @@
 const mysql = require('mysql2');
 const con = mysql.createConnection({
-    host: '',
-    user: '',
-    password: '',
-    database: '',
+    host: 'masterfrio.mysql.uhserver.com',
+    user: 'root7894561',
+    password: 'Qnf3gLd38J7ruM@5',
+    database: 'masterfrio',
     port: 3306
 });
 con.connect();
@@ -24,7 +24,7 @@ function db (){
         },
         selectServico: function() {
             const promise = new Promise((resolve, reject) => {
-                
+				
                 con.query(`
                 SELECT s.id_servico,
                 c.id_cliente,
